@@ -1,4 +1,6 @@
 <div class="title-recruit"><?php echo $this->lang->line('opening'); ?></div>
+<?php die('hệ thống đang bảo trì'); ?>
+<?php pre($recruitment); die(); ?>
 <?php foreach ($recruitment as $row){ ?>
     <div class="item-recruit">
         <div>
@@ -32,7 +34,7 @@
                     break;
             }?>
 
-            <span class="item-date"><?php echo date('d/m/y', $row->created)?></span>
+            <span class="item-date"><?php echo date('d/m/Y', $row->created)?></span>
         </div>
         <div class="title-item-recruit"><?php echo $language == 'vn' ? $row->title : $row->title_en?></div>
         <div class="des-item-recruit"><?php echo substr( strip_tags($language == 'vn' ? $row->content : $row->content_en),  0, 150 ).'...' ?></div>
