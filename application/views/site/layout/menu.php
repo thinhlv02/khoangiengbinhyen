@@ -9,7 +9,7 @@
 <!--</div>-->
 <div class="sub-nav">
 <!--    <div class="logo"><img src="--><?php //echo base_url('public/images/logo.png')?><!--"></div>-->
-    <div class="logo"><img src="<?php echo base_url('public/images/logo_nga.jpg')?>"></div>
+    <div class="logo"><img src="<?php echo base_url('public/images/logo-t.png')?>"></div>
 <!--    <div style="float: right; line-height: 60px; margin-right: 20px">-->
 <!--        <a href="--><?php //echo base_url('vn/'.getLastUri())?><!--"><img src="--><?php //echo public_url('images/flag_vn.png')?><!--" style="width: 33px; height: 22px; --><?php //echo $language == 'vn' ? 'border: 3px solid #4dbb6d' : 'border: 3px solid transparent;'?><!--"></a>-->
 <!--        <a href="--><?php //echo base_url('en/'.getLastUri())?><!--"><img src="--><?php //echo public_url('images/flag_us.png')?><!--" style="width: 33px; height: 22px; --><?php //echo $language == 'en' ? 'border: 3px solid #4dbb6d' : 'border: 3px solid transparent;'?><!--"></a>-->

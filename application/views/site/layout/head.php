@@ -5,7 +5,8 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url('public/css/style.css'); ?>">
 <link href="<?php echo base_url('public/css/responsive.css'); ?>" rel="stylesheet">
-<link href="<?php echo base_url('public/images/favicon.png'); ?>" rel="shortcut icon">
+<!--<link href="--><?php //echo base_url('public/images/favicon.png'); ?><!--" rel="shortcut icon">-->
+<link href="<?php echo base_url('public/images/logo-t.png'); ?>" rel="shortcut icon">
 <!--<link rel="shortcut icon" href="https://www.btaskee.com/img/favicon.png">-->
 <?php if(isset($css)){
     foreach ($css as $row){?>
