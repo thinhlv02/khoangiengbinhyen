@@ -7,7 +7,7 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <?php $this->load->view('admin/left'); ?>
+        <?php $this->load->view('admin/left_col'); ?>
 
         <!-- top navigation -->
         <div class="top_nav">
