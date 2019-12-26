@@ -7,23 +7,29 @@ Class MY_Controller extends CI_Controller
 
     function __construct()
     {
+        date_default_timezone_set('Etc/GMT+7');
+
         parent::__construct();
         $new_url = $this->uri->segment(1);
 //        var_dump($new_url);
-        switch ($new_url) {
-            case 'admin' : {
+        switch ($new_url)
+        {
+            case 'admin' :
+            {
 //                pre('abc');
                 $this->_check_login();
                 $this->data['admin'] = $this->session->userdata('admin');
                 break;
             }
 
-            default: {
+            default:
+            {
                 $this->load->model('contact_model');
                 $contact = $this->contact_model->get_info(1);
                 $this->data['contact'] = $contact;
                 $language = $this->session->userdata('language');
-                if(!$language){
+                if (!$language)
+                {
                     $this->session->set_userdata('language', 'vn');
                     $language = 'vn';
                 }
@@ -40,11 +46,13 @@ Class MY_Controller extends CI_Controller
 
         $login = $this->session->userdata('login');
         //neu ma chua dang nhap,ma truy cap 1 controller khac login
-        if (!$login && $controller != 'login') {
+        if (!$login && $controller != 'login')
+        {
             redirect(base_url('admin/login'));
         }
         //neu ma admin da dang nhap thi khong cho phep vao trang login nua.
-        if ($login && $controller == 'login') {
+        if ($login && $controller == 'login')
+        {
             redirect(base_url('admin/product'));
         }
     }
