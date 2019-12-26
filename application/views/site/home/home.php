@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <?php $this->load->view('site/home/intro_home') ?>
 <?php $this->load->view('site/home/service') ?>
 <?php $this->load->view('site/home/news')?>

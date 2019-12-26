@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <div class="title-recruit"><?php echo $this->lang->line('opening'); ?></div>
 <nav aria-label="breadcrumb" role="navigation">
     <ol class="breadcrumb">

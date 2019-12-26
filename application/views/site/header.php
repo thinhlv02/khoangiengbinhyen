@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <section class="first-section">
     <div class="container">
         <div class="header">

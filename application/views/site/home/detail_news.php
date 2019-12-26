@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <section class="news">
     <div class="container">
         <div class="col-sm-12 col-md-8">

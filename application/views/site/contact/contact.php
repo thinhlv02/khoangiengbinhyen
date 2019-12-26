@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <section class="contact">
     <div class="container">
         <div class="title-section"><h2><?php echo $language == 'vn' ? 'Thông tin liên hệ' : $this->lang->line('contact');?></h2></div>

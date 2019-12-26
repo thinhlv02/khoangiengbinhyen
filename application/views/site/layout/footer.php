@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <section class="contact-footer">
     <div class="container">
         <div class="col-sm-12 col-md-6">

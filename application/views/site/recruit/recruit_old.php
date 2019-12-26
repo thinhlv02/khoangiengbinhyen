@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <section class="recruitment">
     <div class="container">
         <div class="col-sm-12 col-md-12">

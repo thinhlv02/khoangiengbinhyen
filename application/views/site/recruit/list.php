@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <div class="title-recruit"><?php echo $this->lang->line('opening'); ?></div>
 <?php die('hệ thống đang bảo trì'); ?>
 <?php pre($recruitment); die(); ?>

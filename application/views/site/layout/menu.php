@@ -1,3 +1,5 @@
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <!--<div class="sub-nav">-->
 <!--    <ul>-->
 <!--        <li class="li-home" title="Trang chủ"><i class="fa fa-home" aria-hidden="true"></i></li>-->
