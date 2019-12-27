@@ -1,7 +1,10 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-Class Content extends MY_Controller {
-    function __construct() {
+
+Class Content extends MY_Controller
+{
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('content_model');
     }
@@ -10,10 +13,10 @@ Class Content extends MY_Controller {
     {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
-        $service = $this->content_model->get_list(array('where'=>array('type'=>1)));
-        $intro_home = $this->content_model->get_list(array('where'=>array('type'=>4)));
-        $intro = $this->content_model->get_list(array('where'=>array('type'=>2)));
-        $styles = $this->content_model->get_list(array('where'=>array('type'=>3)));
+        $service = $this->content_model->get_list(array('where' => array('type' => 1)));
+        $intro_home = $this->content_model->get_list(array('where' => array('type' => 4)));
+        $intro = $this->content_model->get_list(array('where' => array('type' => 2)));
+        $styles = $this->content_model->get_list(array('where' => array('type' => 3)));
         $this->data['intro_home'] = $intro_home;
         $this->data['intro'] = $intro;
         $this->data['service'] = $service;
@@ -22,20 +25,24 @@ Class Content extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function add_intro(){
+    function add_intro()
+    {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
-        if($this->input->post('btnAdd')){
+        if ($this->input->post('btnAdd'))
+        {
             $data = array(
                 'title' => $this->input->post('txtName'),
                 'prioriti' => $this->input->post('txtPrioriti'),
                 'content' => $this->input->post('txtContent'),
                 'type' => 2
             );
-            if($this->content_model->create($data)){
+            if ($this->content_model->create($data))
+            {
                 $this->session->set_flashdata('message', 'Thêm thành công!');
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Thêm thất bại!');
             }
             redirect(admin_url('content'));
@@ -44,18 +51,22 @@ Class Content extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function edit_intro_home(){
+    function edit_intro_home()
+    {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
         $id = $this->uri->segment(4);
         $intro = $this->content_model->get_info($id);
-        if($intro){
+        if ($intro)
+        {
             $this->data['intro'] = $intro;
         }
-        else{
+        else
+        {
             redirect(admin_url('content'));
         }
-        if($this->input->post('btnEdit')){
+        if ($this->input->post('btnEdit'))
+        {
             $data = array(
                 'title' => $this->input->post('txtName'),
                 'title_en' => $this->input->post('txtNameEn'),
@@ -64,10 +75,12 @@ Class Content extends MY_Controller {
                 'content_en' => $this->input->post('txtContentEn'),
                 'type' => 4
             );
-            if($this->content_model->update($id, $data)){
+            if ($this->content_model->update($id, $data))
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thành công!');
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thất bại!');
             }
             redirect(admin_url('content'));
@@ -76,18 +89,22 @@ Class Content extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function edit_intro(){
+    function edit_intro()
+    {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
         $id = $this->uri->segment(4);
         $intro = $this->content_model->get_info($id);
-        if($intro){
+        if ($intro)
+        {
             $this->data['intro'] = $intro;
         }
-        else{
+        else
+        {
             redirect(admin_url('content'));
         }
-        if($this->input->post('btnEdit')){
+        if ($this->input->post('btnEdit'))
+        {
             $data = array(
                 'title' => $this->input->post('txtName'),
                 'title_en' => $this->input->post('txtNameEn'),
@@ -96,10 +113,12 @@ Class Content extends MY_Controller {
                 'content_en' => $this->input->post('txtContentEn'),
                 'type' => 2
             );
-            if($this->content_model->update($id, $data)){
+            if ($this->content_model->update($id, $data))
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thành công!');
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thất bại!');
             }
             redirect(admin_url('content'));
@@ -108,27 +127,33 @@ Class Content extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function del(){
+    function del()
+    {
         $id = $this->uri->segment(4);
-        if($this->content_model->get_info($id)){
+        if ($this->content_model->get_info($id))
+        {
             $this->content_model->delete($id);
             $this->session->set_flashdata('message', 'Xóa thành công!');
         }
         redirect(admin_url('content'));
     }
 
-    function edit_service(){
+    function edit_service()
+    {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
         $id = $this->uri->segment(4);
         $intro = $this->content_model->get_info($id);
-        if($intro){
+        if ($intro)
+        {
             $this->data['intro'] = $intro;
         }
-        else{
+        else
+        {
             redirect(admin_url('content'));
         }
-        if($this->input->post('btnEdit')){
+        if ($this->input->post('btnEdit'))
+        {
             $data = array(
                 'title' => $this->input->post('txtName'),
                 'title_en' => $this->input->post('txtNameEn'),
@@ -136,10 +161,12 @@ Class Content extends MY_Controller {
                 'content_en' => $this->input->post('txtContentEn'),
                 'icon' => $this->input->post('txtIcon'),
             );
-            if($this->content_model->update($id, $data)){
+            if ($this->content_model->update($id, $data))
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thành công!');
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thất bại!');
             }
             redirect(admin_url('content'));

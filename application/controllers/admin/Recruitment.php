@@ -1,7 +1,10 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-Class Recruitment extends MY_Controller {
-    function __construct() {
+
+Class Recruitment extends MY_Controller
+{
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('recruitment_model');
         $this->load->model('user_recruit_model');
@@ -18,10 +21,12 @@ Class Recruitment extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function add(){
+    function add()
+    {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
-        if($this->input->post('btnAddRecruitment')){
+        if ($this->input->post('btnAddRecruitment'))
+        {
             $content = $this->input->post('txtContent');
             $content_en = $this->input->post('txtContentEn');
             $expired_date = $this->input->post('txtExpired');
@@ -42,12 +47,14 @@ Class Recruitment extends MY_Controller {
 //            pre($data_submit);
             $idAdd = $this->recruitment_model->create($data_submit);
 //            pre($idAdd);
-            if($idAdd > 0){
+            if ($idAdd > 0)
+            {
                 $this->sendMail($idAdd, $title, $department - 1);
                 $this->session->set_flashdata('message', 'Đăng bài thành công!');
                 redirect(base_url('admin/recruitment/add'));
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Có lỗi xảy ra, vui lòng thử lại!');
                 redirect(base_url('admin/recruitment/add'));
             }
@@ -57,17 +64,19 @@ Class Recruitment extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    private function sendMail($id, $title, $department){
+    private function sendMail($id, $title, $department)
+    {
 //        $link = base_url('tuyen-dung/tuyen-dung-lap-trinh-vien-javascript-4.html');
-        $link = base_url('tuyen-dung/'.create_slug($title).'-'.$id.'.html');
+        $link = base_url('tuyen-dung/' . create_slug($title) . '-' . $id . '.html');
         $departments = array('Lập trình PHP', 'Lập trình .NET', 'Lập trình Javascript', 'Lập trình mobile',
             'Lập trình iOS', 'Lập trình Android', 'Vận hành', 'Kiểm thử', 'Kinh doanh');
         $phone_support = $this->contact_model->get_info(1)->phone;
         $email_recruit = $this->contact_model->get_info(1)->email_recruit;
         $pos = $departments[$department];
-        $emails = $this->email_recruit_model->get_list(array('where'=>array('status'=>1)));
+        $emails = $this->email_recruit_model->get_list(array('where' => array('status' => 1)));
         $list = array();
-        foreach ($emails as $row){
+        foreach ($emails as $row)
+        {
             $list[] = $row->email;
         }
 
@@ -87,26 +96,31 @@ Class Recruitment extends MY_Controller {
 
         $this->email->from($email_recruit, 'Tuyển dụng Khoan giếng bình yên');
         $this->email->to($list);
-        $this->email->subject('Khoan giếng bình yên tuyển dụng vị trí '.$pos);
+        $this->email->subject('Khoan giếng bình yên tuyển dụng vị trí ' . $pos);
         $this->email->message('Chào bạn, chúng tôi gửi thư này cho bạn từ phòng Nhân sự của công ty cổ phần truyền thông SGC Việt Nam.<br>
-         Hiện tại công ty chúng tôi đang cần tuyển dụng nhân sự cho vị trí '.$pos.', chi tiết xem tại '.$link.'.<br>
-         Bạn có thể gửi thông tin ứng tuyển ngay trên <a href="'.base_url('tuyen-dung.html').'">website</a> của chúng tôi 
-         hoặc gửi CV về địa chỉ email '.$email_recruit.'.<br>
-         Số điện thoại hỗ trợ: '.$phone_support.'<br>Xin cảm ơn!');
+         Hiện tại công ty chúng tôi đang cần tuyển dụng nhân sự cho vị trí ' . $pos . ', chi tiết xem tại ' . $link . '.<br>
+         Bạn có thể gửi thông tin ứng tuyển ngay trên <a href="' . base_url('tuyen-dung.html') . '">website</a> của chúng tôi 
+         hoặc gửi CV về địa chỉ email ' . $email_recruit . '.<br>
+         Số điện thoại hỗ trợ: ' . $phone_support . '<br>Xin cảm ơn!');
 
-        if ( ! $this->email->send()){
+        if (!$this->email->send())
+        {
             // Generate error
             echo $this->email->print_debugger();
-        }else{
+        }
+        else
+        {
             echo 'Gửi email thành công';
         }
     }
 
-    function edit(){
+    function edit()
+    {
         $id = $this->uri->segment(4);
 //        pre($id);
         $recruitment = $this->recruitment_model->get_info($id);
-        if(!$recruitment){
+        if (!$recruitment)
+        {
             echo 'Đường dẫn không hợp lệ';
             return;
         }
@@ -114,7 +128,8 @@ Class Recruitment extends MY_Controller {
 
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
-        if($this->input->post('btnUpdateRecruitment')){
+        if ($this->input->post('btnUpdateRecruitment'))
+        {
             $content = $this->input->post('txtContent');
             $content_en = $this->input->post('txtContentEn');
             $expired_date = $this->input->post('txtExpired');
@@ -133,13 +148,15 @@ Class Recruitment extends MY_Controller {
                 'created' => $created->getTimestamp()
             );
 //            pre($data_submit);
-            if($this->recruitment_model->update($id, $data_submit)){
+            if ($this->recruitment_model->update($id, $data_submit))
+            {
                 $this->session->set_flashdata('message', 'Chỉnh sửa thành công!');
-                redirect(base_url('admin/recruitment/edit/'.$id));
+                redirect(base_url('admin/recruitment/edit/' . $id));
             }
-            else{
+            else
+            {
                 $this->session->set_flashdata('message', 'Có lỗi xảy ra, vui lòng thử lại!');
-                redirect(base_url('admin/recruitment/edit/'.$id));
+                redirect(base_url('admin/recruitment/edit/' . $id));
             }
         }
 
@@ -148,20 +165,24 @@ Class Recruitment extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function del(){
+    function del()
+    {
         $id = $this->uri->segment(4);
-        if($this->recruitment_model->get_info($id)){
+        if ($this->recruitment_model->get_info($id))
+        {
             $this->recruitment_model->delete($id);
             redirect(base_url('admin/recruitment'));
         }
-        else{
+        else
+        {
             redirect(base_url('admin/recruitment'));
         }
     }
 
-    function user_recruit(){
+    function user_recruit()
+    {
         $id_recruit = $this->uri->segment(4);
-        $user_recruit = $this->user_recruit_model->get_list(array('where'=>array('id_recruitment' => $id_recruit)));
+        $user_recruit = $this->user_recruit_model->get_list(array('where' => array('id_recruitment' => $id_recruit)));
         $this->data['user_recruit'] = $user_recruit;
         $this->data['id_recruit'] = $id_recruit;
         $this->data['name_recruit'] = $this->recruitment_model->get_info($id_recruit)->title;
@@ -170,10 +191,11 @@ Class Recruitment extends MY_Controller {
         $this->load->view('admin/layout', $this->data);
     }
 
-    function download(){
+    function download()
+    {
         $filename = $this->uri->segment(4);
         $this->load->helper('download');
-        $path = file_get_contents(base_url('upload/'.$filename));
+        $path = file_get_contents(base_url('upload/' . $filename));
         header('Pragma: public');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -184,15 +206,18 @@ Class Recruitment extends MY_Controller {
         force_download($filename, $path);
     }
 
-    function del_user_recruit(){
+    function del_user_recruit()
+    {
         $id = $this->uri->segment(5);
         $id_recruit = $this->uri->segment(4);
-        if($this->user_recruit_model->get_info($id)){
+        if ($this->user_recruit_model->get_info($id))
+        {
             $this->user_recruit_model->delete($id);
-            redirect(base_url('admin/recruitment/user_recruit/'.$id_recruit));
+            redirect(base_url('admin/recruitment/user_recruit/' . $id_recruit));
         }
-        else{
-            redirect(base_url('admin/recruitment/user_recruit/'.$id_recruit));
+        else
+        {
+            redirect(base_url('admin/recruitment/user_recruit/' . $id_recruit));
         }
     }
 }

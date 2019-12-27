@@ -19,8 +19,8 @@ Class Home extends MY_Controller
     {
         $product = $this->product_model->get_list();
         $news = $this->news_model->get_list();
-        $intro_home = $this->content_model->get_list(array('where'=>array('type'=>4)));
-        $service = $this->content_model->get_list(array('where'=>array('type'=>1)));
+        $intro_home = $this->content_model->get_list(array('where' => array('type' => 4)));
+        $service = $this->content_model->get_list(array('where' => array('type' => 1)));
         $this->data['li_home'] = 1;
         $this->data['news'] = $news;
         $this->data['product'] = $product;
@@ -31,31 +31,38 @@ Class Home extends MY_Controller
 //        pre($intro_home);
     }
 
-    function language(){
+    function language()
+    {
         $language = $this->uri->segment(1);
         $uri2 = $this->uri->segment(2);
         $uri3 = $this->uri->segment(3);
 //        pre($uri2.'-'.$uri3);
-        if($language == 'vn'){
+        if ($language == 'vn')
+        {
             $this->session->set_userdata('language', 'vn');
         }
-        else if($language == 'en'){
+        else if ($language == 'en')
+        {
             $this->session->set_userdata('language', 'en');
         }
-        if($uri3){
-            redirect(base_url($uri2.'/'.$uri3));
+        if ($uri3)
+        {
+            redirect(base_url($uri2 . '/' . $uri3));
         }
-        else if($uri2){
+        else if ($uri2)
+        {
             redirect(base_url($uri2));
         }
-        else{
+        else
+        {
             redirect(base_url());
         }
     }
 
-    public function intro(){
-        $intro = $this->content_model->get_list(array('where'=>array('type'=>2), 'order'=>array('prioriti','ASC')));
-        $styles = $this->content_model->get_list(array('where'=>array('type'=>3)));
+    public function intro()
+    {
+        $intro = $this->content_model->get_list(array('where' => array('type' => 2), 'order' => array('prioriti', 'ASC')));
+        $styles = $this->content_model->get_list(array('where' => array('type' => 3)));
         $this->data['intro'] = $intro;
         $this->data['styles'] = $styles;
         $this->data['li_intro'] = 1;
@@ -66,15 +73,19 @@ Class Home extends MY_Controller
         $this->load->view('site/layout/layout', $this->data);
     }
 
-    public function recruit(){
+    public function recruit()
+    {
         $input = array();
         $type = $this->uri->segment(2);
-        if($type){
+        if ($type)
+        {
             $arr = array();
-            if($type == 'ky-thuat.html'){
+            if ($type == 'ky-thuat.html')
+            {
                 $arr = array(10);//php, .net, js, mobile, ios, android
             }
-            else if($type == 'van-hanh-kiem-thu.html'){
+            else if ($type == 'van-hanh-kiem-thu.html')
+            {
                 $arr = array(11);
             }
 //            else if($type == 'kinh-doanh.html'){
@@ -82,7 +93,8 @@ Class Home extends MY_Controller
 //            }
             $recruitment = $this->recruitment_model->get_list_by_department($arr);
         }
-        else{
+        else
+        {
             $recruitment = $this->recruitment_model->get_list();
         }
 
@@ -114,12 +126,15 @@ Class Home extends MY_Controller
         $this->load->view('site/layout/layout', $this->data);
     }
 
-    public function detailRecruit($slug = '', $id = -1){
+    public function detailRecruit($slug = '', $id = -1)
+    {
         $detail = $this->recruitment_model->get_info($id);
-        if($detail){
+        if ($detail)
+        {
             $this->data['detail'] = $detail;
         }
-        else{
+        else
+        {
             redirect(base_url('tuyen-dung.html'));
         }
         $this->data['li_recruitment'] = 1;
@@ -128,22 +143,26 @@ Class Home extends MY_Controller
         $this->load->view('site/layout/layout', $this->data);
     }
 
-    public function regRecruit(){
+    public function regRecruit()
+    {
         $status = "";
         $msg = "";
 
         $name = $this->input->post('txtNameReg');
         $email = $this->input->post('txtEmailReg');
 
-        if($name && $email){
+        if ($name && $email)
+        {
 //            pre($email);
-            $check_email = $this->email_recruit_model->get_total(array('where' => array('email'=>$email)));
+            $check_email = $this->email_recruit_model->get_total(array('where' => array('email' => $email)));
 //            pre($check_email);
-            if($check_email > 0){
+            if ($check_email > 0)
+            {
                 $status = "error";
                 $msg = "Email đã được đăng ký";
             }
-            else{
+            else
+            {
                 $now = new DateTime();
                 $dataSubmit = array(
                     'name' => $name,
@@ -155,14 +174,16 @@ Class Home extends MY_Controller
                 $status = "success";
             }
         }
-        else{
+        else
+        {
             $status = "error";
             $msg = "Vui lòng điền đầy đủ các trường trước khi gửi!";
         }
         echo json_encode(array('status' => $status, 'msg' => $msg));
     }
 
-    public function submitRecruit(){
+    public function submitRecruit()
+    {
         $status = "";
         $msg = "";
 
@@ -174,14 +195,16 @@ Class Home extends MY_Controller
         $sex = $this->input->post('slSex');
 //        $cv = $this->input->post('cv');
         $now = new DateTime();
-        if($name != '' && $email != '' && $phone!='' && $birthday!='' && $sex!=''){
+        if ($name != '' && $email != '' && $phone != '' && $birthday != '' && $sex != '')
+        {
             $config['upload_path'] = './upload';
             $config['allowed_types'] = 'jpg|png|jpeg|JPEG|doc|DOC|docx|DOCX|pdf';
             $this->load->library("upload", $config);
-            if ($this->upload->do_upload('file_cv')) {
+            if ($this->upload->do_upload('file_cv'))
+            {
                 $file_data = $this->upload->data();
                 $dataSubmit = array(
-                    'id_recruitment'=> $id_recruitment,
+                    'id_recruitment' => $id_recruitment,
                     'name' => $name,
                     'email' => $email,
                     'phone' => $phone,
@@ -195,57 +218,68 @@ Class Home extends MY_Controller
 //                $msg = $this->upload->data();
                 $status = 'success';
             }
-            else {
+            else
+            {
                 $status = 'error';
                 $msg = $this->upload->display_errors('', '');
             }
         }
-        else{
+        else
+        {
             $status = "error";
             $msg = "Vui lòng điền đầy đủ các trường trước khi gửi!";
         }
         echo json_encode(array('status' => $status, 'msg' => $msg));
     }
 
-    public function feedback(){
+    public function feedback()
+    {
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $message = $this->input->post('message');
-        if($name && $email && $message){
+        if ($name && $email && $message)
+        {
             $now = new DateTime();
             $feedback = array(
                 'name' => $name,
-                'email'=> $email,
+                'email' => $email,
                 'message' => $message,
                 'created' => $now->getTimestamp()
             );
-            if($this->feedback_model->create($feedback)){
+            if ($this->feedback_model->create($feedback))
+            {
                 echo true;
             }
-            else{
+            else
+            {
                 echo false;
             }
         }
-        else{
+        else
+        {
             echo false;
         }
     }
 
-    public function contact(){
+    public function contact()
+    {
         $this->data['li_contact'] = 1;
         $this->data['temp'] = 'site/contact/contact';
         $this->load->view('site/layout/layout', $this->data);
     }
 
-    public function news($slug = '', $id = 0){
+    public function news($slug = '', $id = 0)
+    {
         $detail = $this->news_model->get_info($id);
-        if($detail && $slug == create_slug($detail->title)){
+        if ($detail && $slug == create_slug($detail->title))
+        {
 
         }
-        else{
+        else
+        {
             redirect(base_url());
         }
-        $news = $this->news_model->get_list(array('limit'=>array(5 ,0)));
+        $news = $this->news_model->get_list(array('limit' => array(5, 0)));
         $this->data['detail'] = $detail;
         $this->data['news'] = $news;
         $this->data['temp'] = 'site/home/detail_news';

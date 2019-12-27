@@ -1,8 +1,10 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-Class Contact extends MY_Controller {
-    function __construct() {
+Class Contact extends MY_Controller
+{
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('contact_model');
     }
@@ -11,7 +13,8 @@ Class Contact extends MY_Controller {
     {
         $message = $this->session->flashdata('message');
         $this->data['message'] = $message;
-        if($this->input->post('btnUpdateContact')){
+        if ($this->input->post('btnUpdateContact'))
+        {
             $company = $this->input->post('txtCompany');
             $company_en = $this->input->post('txtCompanyEn');
             $phone = $this->input->post('txtPhone');
@@ -21,15 +24,16 @@ Class Contact extends MY_Controller {
             $office = $this->input->post('txtOffice');
             $office_en = $this->input->post('txtOfficeEn');
             $email_recruit = $this->input->post('txtEmailRecruit');
-            if($phone && $email && $address && $office){
+            if ($phone && $email && $address && $office)
+            {
                 $contact_submit = array(
                     'company' => $company,
                     'company_en' => $company_en,
                     'phone' => $phone,
                     'email' => $email,
                     'email_recruit' => $email_recruit,
-                    'address'=> $address,
-                    'address_en'=> $address_en,
+                    'address' => $address,
+                    'address_en' => $address_en,
                     'office' => $office,
                     'office_en' => $office_en,
                 );

@@ -1,6 +1,7 @@
 <?php
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
+
 Class Feedback extends MY_Controller
 {
     function __construct()
@@ -17,13 +18,16 @@ Class Feedback extends MY_Controller
         $this->load->view('admin/layout', $this->data);
     }
 
-    function del(){
+    function del()
+    {
         $id = $this->uri->segment(4);
-        if($this->feedback_model->get_info($id)){
+        if ($this->feedback_model->get_info($id))
+        {
             $this->feedback_model->delete($id);
             redirect(base_url('admin/feedback'));
         }
-        else{
+        else
+        {
             redirect(base_url('admin/feedback'));
         }
     }

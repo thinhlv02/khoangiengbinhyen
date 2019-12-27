@@ -1,5 +1,6 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
+
 Class Index extends MY_Controller
 {
     function __construct()
@@ -19,7 +20,8 @@ Class Index extends MY_Controller
         $this->load->view('admin/layout', $this->data);
     }
 
-    function logout(){
+    function logout()
+    {
 //        pre('logout');
         $this->session->unset_userdata('admin');
         $this->session->unset_userdata('login');
