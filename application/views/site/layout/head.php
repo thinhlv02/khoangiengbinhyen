@@ -1,26 +1,30 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
     <meta charset="UTF-8">
-<title><?php echo isset($title) ? $title : 'Bình Yên'?></title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo base_url('public/css/style.css'); ?>">
-<link href="<?php echo base_url('public/css/responsive.css'); ?>" rel="stylesheet">
-<!--<link href="--><?php //echo base_url('public/images/favicon.png'); ?><!--" rel="shortcut icon">-->
-<link href="<?php echo base_url('public/images/logo-t.png'); ?>" rel="shortcut icon">
-<!--<link rel="shortcut icon" href="https://www.btaskee.com/img/favicon.png">-->
-<?php if(isset($css)){
-    foreach ($css as $row){?>
-        <link rel="stylesheet" href="<?php echo base_url('public/css/'.$row); ?>">
-<?php }}?>
+    <title><?php echo isset($title) ? $title : 'Bình Yên' ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/base.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/css/font-awesome/css/font-awesome.min.css'); ?>">
+    <link href="<?php echo base_url('public/images/logo-t.png'); ?>" rel="shortcut icon">
+<?php if (isset($css))
+{
+    foreach ($css as $row)
+    {
+        ?>
+        <link rel="stylesheet" href="<?php echo base_url('public/css/' . $row); ?>">
+    <?php }
+} ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url('public/js/page.js'); ?>"></script>
+    <script src="<?php echo base_url('public/js/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('public/js/jquery.validate.min.js'); ?>"></script>
+    <script src="<?php echo base_url('public/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo base_url('public/js/page.js'); ?>"></script>
 
-<?php if(isset($js)){
-    foreach ($js as $row){?>
-        <script src="<?php echo base_url('public/js/'.$row); ?>"></script>
-    <?php }}?>
+<?php if (isset($js))
+{
+    foreach ($js as $row)
+    {
+        ?>
+        <script src="<?php echo base_url('public/js/' . $row); ?>"></script>
+    <?php }
+} ?>
