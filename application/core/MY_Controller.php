@@ -14,7 +14,7 @@ Class MY_Controller extends CI_Controller
         $new_url = $this->uri->segment(1);
 //        var_dump($new_url);
         $this->_template_f = TEMPLATE_FOLDER;
-        var_dump($this->_template_f);
+//        var_dump($this->_template_f);
 
         switch ($new_url)
         {

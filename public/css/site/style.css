@@ -532,7 +532,7 @@ blockquote span {
 }
 
 .contact-footer {
-    background: url(../images/about_background.jpg) no-repeat;
+    background: url(../../images/about_background.jpg) no-repeat;
     background-size: cover;
     color: #ddd;
     font-size: 17px;
