@@ -41,8 +41,5 @@
     {
         ?>
 <!--        <script src="--><?php //echo base_url('public/js/' . $template_f . '' . $row); ?><!--"></script>-->
-<!--        <script src="--><?php //echo base_url('public/js/' . $template_f . '' . $row); ?><!--"></script>-->
-<!--        <script src="--><?php //echo base_url('public/js/' . $template_f . '' . $row); ?><!--"></script>-->
-<!--        <script src="--><?php //echo base_url('public/js/' . $template_f . '' . $row); ?><!--"></script>-->
     <?php }
 } ?>
