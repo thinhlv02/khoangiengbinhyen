@@ -71,6 +71,7 @@ Class Home extends MY_Controller
         $this->data['js'] = ['main.js', 'modernizr.js', 'owl.carousel.min.js'];
         $this->data['temp'] = $this->_template_f . 'intro/intro';
         $this->load->view($this->_template_f . 'layout/layout', $this->data);
+//        var_dump($this->data['js']);
     }
 
     public function recruit()
