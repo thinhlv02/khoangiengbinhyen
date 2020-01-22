@@ -1,4 +1,6 @@
 <?php
+// custom define
+require_once('cf/cf.php');
 /**
  * CodeIgniter
  *

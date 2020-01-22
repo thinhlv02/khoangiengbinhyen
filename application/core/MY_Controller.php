@@ -3,6 +3,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 Class MY_Controller extends CI_Controller
 {
+    var $_template_f = '';
     public $data = array();
 
     function __construct()
@@ -12,6 +13,9 @@ Class MY_Controller extends CI_Controller
         parent::__construct();
         $new_url = $this->uri->segment(1);
 //        var_dump($new_url);
+        $this->_template_f = TEMPLATE_FOLDER;
+        var_dump($this->_template_f);
+
         switch ($new_url)
         {
             case 'admin' :
@@ -37,6 +41,21 @@ Class MY_Controller extends CI_Controller
                 $this->lang->load($language, 'language');
             }
         }
+
+        // init and assign common value to view: language, common lang
+        $preHeader = array();
+//        $preHeader['common_lang'] = $this->_common_lang;
+        $preHeader['template_f'] = $this->_template_f;
+//        $preHeader['login_lang'] = $this->_login_lang;
+//        $preHeader['language'] = $this->_langcode;
+//        $preHeader['agencies'] = $this->_agencies;
+//        $preHeader['contact'] = $this->_contact;
+//        $preHeader['content'] = $this->_content;
+//        $preHeader['user_login'] = $this->_user_login;
+//        $preHeader['prices'] = $this->_prices;
+//        $preHeader['products'] = $this->_products;
+        // assign all common param to view
+        $this->load->view($this->_template_f . 'preheader_view', $preHeader);
     }
 
     private function _check_login()

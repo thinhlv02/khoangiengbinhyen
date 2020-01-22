@@ -26,8 +26,8 @@ Class Home extends MY_Controller
         $this->data['product'] = $product;
         $this->data['intro_home'] = $intro_home;
         $this->data['service'] = $service;
-        $this->data['temp'] = 'site/home/home';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['temp'] = $this->_template_f . 'home/home';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
 //        pre($intro_home);
     }
 
@@ -69,8 +69,8 @@ Class Home extends MY_Controller
         $this->data['title'] = 'Giới thiệu Khoan giếng bình yên';
         $this->data['css'] = ['styleTimeline.css', 'owl.carousel.min.css', 'owl.theme.default.min.css'];
         $this->data['js'] = ['main.js', 'modernizr.js', 'owl.carousel.min.js'];
-        $this->data['temp'] = 'site/intro/intro';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['temp'] = $this->_template_f . 'intro/intro';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
     }
 
     public function recruit()
@@ -121,9 +121,9 @@ Class Home extends MY_Controller
         $this->data['recruitment'] = $recruitment;
         $this->data['li_recruitment'] = 1;
         $this->data['js'] = ['bootstrap-datepicker.js'];
-        $this->data['recruit_temp'] = 'site/recruit/list';
-        $this->data['temp'] = 'site/recruit/recruit';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['recruit_temp'] = $this->_template_f . 'recruit/list';
+        $this->data['temp'] = $this->_template_f . 'recruit/recruit';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
     }
 
     public function detailRecruit($slug = '', $id = -1)
@@ -138,9 +138,9 @@ Class Home extends MY_Controller
             redirect(base_url('tuyen-dung.html'));
         }
         $this->data['li_recruitment'] = 1;
-        $this->data['recruit_temp'] = 'site/recruit/detail';
-        $this->data['temp'] = 'site/recruit/recruit';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['recruit_temp'] = $this->_template_f . 'recruit/detail';
+        $this->data['temp'] = $this->_template_f . 'recruit/recruit';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
     }
 
     public function regRecruit()
@@ -264,8 +264,8 @@ Class Home extends MY_Controller
     public function contact()
     {
         $this->data['li_contact'] = 1;
-        $this->data['temp'] = 'site/contact/contact';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['temp'] = $this->_template_f . 'contact/contact';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
     }
 
     public function news($slug = '', $id = 0)
@@ -282,7 +282,7 @@ Class Home extends MY_Controller
         $news = $this->news_model->get_list(array('limit' => array(5, 0)));
         $this->data['detail'] = $detail;
         $this->data['news'] = $news;
-        $this->data['temp'] = 'site/home/detail_news';
-        $this->load->view('site/layout/layout', $this->data);
+        $this->data['temp'] = $this->_template_f . 'home/detail_news';
+        $this->load->view($this->_template_f . 'layout/layout', $this->data);
     }
 }
