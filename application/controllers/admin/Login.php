@@ -44,7 +44,7 @@ Class Login extends MY_Controller
             $input = array();
             $input['where']['username'] = $username;
             $admin = $this->admin_model->get_list($input);
-            $admin2 = $this->admin_model->get_list();
+//            $admin2 = $this->admin_model->get_list();
             //pre($admin);
             //$admin = $admin[]
             $this->session->set_userdata('admin', $admin[0]);
