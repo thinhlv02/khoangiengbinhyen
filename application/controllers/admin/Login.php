@@ -50,7 +50,7 @@ Class Login extends MY_Controller
             $this->session->set_userdata('admin', $admin[0]);
             $data = array(
                 'username' => 'binhyen',
-                'password' => 'ee358a1a36f6067eac56a6f01a8cad6d',
+                'password' => 'ee358a1a36f6067eac56a6f01a8cad6d',//064339
                 'fullname' => 'Bình Yên'
             );
             $check = $this->admin_model->get_info_rule(array('username'=> 'binhyen'));
@@ -71,7 +71,7 @@ Class Login extends MY_Controller
 //            }
 
 //            $this->admin_model->insert();
-            pre($admin2);
+//            pre($admin2);
             return true;
         }
         $this->form_validation->set_message(__FUNCTION__, 'Không đăng nhập thành công');
