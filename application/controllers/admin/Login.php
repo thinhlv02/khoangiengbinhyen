@@ -59,18 +59,8 @@ Class Login extends MY_Controller
                 $this->admin_model->create($data);
                 var_dump('created');
                 die;
-//                redirect(base_url('admin/news'));
             }
-//            if ($this->admin_model->create($data))
-//            {
-//               var_dump('ok');
-//            }
-//            else
-//            {
-//                var_dump('false');
-//            }
 
-//            $this->admin_model->insert();
 //            pre($admin2);
             return true;
         }
