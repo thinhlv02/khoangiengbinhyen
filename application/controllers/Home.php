@@ -67,11 +67,10 @@ Class Home extends MY_Controller
         $this->data['styles'] = $styles;
         $this->data['li_intro'] = 1;
         $this->data['title'] = 'Giới thiệu Khoan giếng bình yên';
-        $this->data['css'] = ['styleTimeline.css', 'owl.carousel.min.css', 'owl.theme.default.min.css'];
-        $this->data['js'] = ['main.js', 'modernizr.js', 'owl.carousel.min.js'];
+//        $this->data['css'] = ['styleTimeline.css', 'owl.carousel.min.css', 'owl.theme.default.min.css'];
+//        $this->data['js'] = ['main.js', 'modernizr.js', 'owl.carousel.min.js'];
         $this->data['temp'] = $this->_template_f . 'intro/intro';
         $this->load->view($this->_template_f . 'layout/layout', $this->data);
-//        var_dump($this->data['js']);
     }
 
     public function recruit()
